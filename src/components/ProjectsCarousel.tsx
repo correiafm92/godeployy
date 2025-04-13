@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import ProjectCard from './ProjectCard';
 import { motion } from 'framer-motion';
 import { Hand } from 'lucide-react';
 import { Button } from './ui/button';
+import ProjectFormDialog from './ProjectFormDialog';
 
 interface Project {
   id: number;
@@ -28,6 +29,8 @@ const projects: Project[] = [
 ];
 
 const ProjectsCarousel: React.FC = () => {
+  const [formDialogOpen, setFormDialogOpen] = useState(false);
+  
   return (
     <div className="w-full py-10">
       <motion.h2 
@@ -77,11 +80,16 @@ const ProjectsCarousel: React.FC = () => {
       >
         <Button 
           className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-lg rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
-          onClick={() => window.location.href = "mailto:contato@appsdeployer.com"}
+          onClick={() => setFormDialogOpen(true)}
         >
           Criar o meu
         </Button>
       </motion.div>
+      
+      <ProjectFormDialog
+        open={formDialogOpen}
+        onOpenChange={setFormDialogOpen}
+      />
     </div>
   );
 };

@@ -25,14 +25,6 @@ const Header: React.FC = () => {
           >
             Apps Go Deploy
           </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
-            Transformando suas ideias em aplicativos incríveis. Conheça alguns dos nossos projetos.
-          </motion.p>
         </motion.div>
       </div>
     </motion.header>

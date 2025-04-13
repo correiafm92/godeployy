@@ -54,8 +54,7 @@ const Index = () => {
           >
             <div className="max-w-xl mx-auto">
               <p className="mb-4">
-                Somos especialistas em transformar ideias em aplicativos de alto desempenho.
-                Entre em contato para começar seu projeto.
+                Faça um orçamento para ter seu app personalizado
               </p>
               <p>© 2025 Apps Go Deploy. Todos os direitos reservados.</p>
             </div>
