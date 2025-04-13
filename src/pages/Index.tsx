@@ -1,13 +1,62 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState, useEffect } from 'react';
+import Header from '@/components/Header';
+import ProjectsCarousel from '@/components/ProjectsCarousel';
+import LoadingScreen from '@/components/LoadingScreen';
+import { motion } from 'framer-motion';
 
 const Index = () => {
+  const [loading, setLoading] = useState(true);
+  
+  const handleLoadingComplete = () => {
+    setLoading(false);
+  };
+  
+  // Prevent scrolling during loading
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
+  }, [loading]);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      {loading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
+      
+      <motion.div 
+        className="min-h-screen bg-wine-dark text-white"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loading ? 0 : 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="container mx-auto px-4">
+          <Header />
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <ProjectsCarousel />
+          </motion.div>
+          
+          <motion.footer
+            className="py-8 text-center text-white text-opacity-70 text-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            © 2025 Apps Go Deploy. Todos os direitos reservados.
+          </motion.footer>
+        </div>
+      </motion.div>
+    </>
   );
 };
 
