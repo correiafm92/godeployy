@@ -2,7 +2,7 @@
 import React from 'react';
 import ProjectCard from './ProjectCard';
 import { motion } from 'framer-motion';
-import { Finger } from 'lucide-react';
+import { Hand } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -74,7 +74,7 @@ const ProjectsCarousel: React.FC = () => {
           animate={{ scale: [1, 0.95, 1] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
-          <Finger className="w-6 h-6 animate-tap" />
+          <Hand className="w-6 h-6 animate-tap" />
         </motion.div>
       </div>
     </div>
