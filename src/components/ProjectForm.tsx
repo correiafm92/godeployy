@@ -8,6 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   brandName: z.string().min(2, {
@@ -53,8 +54,20 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ onSuccess }) => {
 
   const onSubmit = async (data: ProjectFormValues) => {
     try {
-      // In future: Replace with Supabase integration
-      console.log("Form data to be sent to Supabase:", data);
+      // Save form data to Supabase
+      const { error } = await supabase
+        .from('project_requests')
+        .insert({
+          brand_name: data.brandName,
+          business_type: data.businessType,
+          email: data.email,
+          social_handle: data.socialHandle
+        });
+        
+      if (error) {
+        console.error("Supabase error:", error);
+        throw error;
+      }
       
       toast.success("Orçamento enviado com sucesso! Entraremos em contato em breve.");
       

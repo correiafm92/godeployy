@@ -107,6 +107,33 @@ export type Database = {
         }
         Relationships: []
       }
+      project_requests: {
+        Row: {
+          brand_name: string
+          business_type: string
+          created_at: string
+          email: string
+          id: string
+          social_handle: string
+        }
+        Insert: {
+          brand_name: string
+          business_type: string
+          created_at?: string
+          email: string
+          id?: string
+          social_handle: string
+        }
+        Update: {
+          brand_name?: string
+          business_type?: string
+          created_at?: string
+          email?: string
+          id?: string
+          social_handle?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
