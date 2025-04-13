@@ -102,13 +102,13 @@
 }
 
 .project-card {
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease-out;
   will-change: transform;
 }
 
 .project-card:hover {
   transform: scale(1.05) translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
 
@@ -128,3 +128,13 @@
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
 .stagger-6 { animation-delay: 0.6s; }
+
+/* Button animation */
+@keyframes pulse-light {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7); }
+  50% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0); }
+}
+
+.pulse-button {
+  animation: pulse-light 2s infinite;
+}

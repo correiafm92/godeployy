@@ -30,7 +30,7 @@ const Index = () => {
       {loading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
       
       <motion.div 
-        className="min-h-screen bg-wine-dark text-white"
+        className="min-h-screen bg-gradient-to-b from-wine-dark to-wine-light text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: loading ? 0 : 1 }}
         transition={{ duration: 0.8 }}
@@ -47,12 +47,18 @@ const Index = () => {
           </motion.div>
           
           <motion.footer
-            className="py-8 text-center text-white text-opacity-70 text-sm"
+            className="py-12 text-center text-white text-opacity-70 text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            © 2025 Apps Go Deploy. Todos os direitos reservados.
+            <div className="max-w-xl mx-auto">
+              <p className="mb-4">
+                Somos especialistas em transformar ideias em aplicativos de alto desempenho.
+                Entre em contato para começar seu projeto.
+              </p>
+              <p>© 2025 Apps Go Deploy. Todos os direitos reservados.</p>
+            </div>
           </motion.footer>
         </div>
       </motion.div>

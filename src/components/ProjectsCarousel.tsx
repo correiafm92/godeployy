@@ -3,43 +3,27 @@ import React from 'react';
 import ProjectCard from './ProjectCard';
 import { motion } from 'framer-motion';
 import { Hand } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface Project {
   id: number;
   image: string;
   url: string;
+  title: string;
 }
 
 const projects: Project[] = [
   {
     id: 1,
+    title: "Outliers",
     image: "https://i.postimg.cc/kGNTwbm0/1744304042982.png",
     url: "https://outliers-one.vercel.app"
   },
   {
     id: 2,
+    title: "Movvi",
     image: "https://i.postimg.cc/6QDzX05s/488615861-1762715454658814-7112080195564576109-n.jpg",
     url: "https://movvihome.vercel.app"
-  },
-  {
-    id: 3,
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    url: "https://example.com/project3"
-  },
-  {
-    id: 4,
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    url: "https://example.com/project4"
-  },
-  {
-    id: 5,
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    url: "https://example.com/project5"
-  },
-  {
-    id: 6,
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    url: "https://example.com/project6"
   }
 ];
 
@@ -56,27 +40,48 @@ const ProjectsCarousel: React.FC = () => {
       </motion.h2>
       
       <div className="relative">
-        <div className="carousel-container flex overflow-x-auto py-4 px-4 md:px-10 snap-x snap-mandatory">
+        <div className="carousel-container flex justify-center flex-wrap gap-6 py-4 px-4 md:px-10">
           {projects.map((project, index) => (
-            <div key={project.id} className="snap-center">
+            <motion.div 
+              key={project.id} 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 * index }}
+              className="w-full md:w-auto"
+            >
               <ProjectCard 
                 image={project.image} 
                 url={project.url} 
                 delay={0.1 * index}
                 index={index + 1}
+                title={project.title}
               />
-            </div>
+            </motion.div>
           ))}
         </div>
         
         <motion.div 
-          className="absolute bottom-4 right-4 text-white"
+          className="absolute bottom-4 right-4 text-white md:hidden"
           animate={{ scale: [1, 0.95, 1] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
           <Hand className="w-6 h-6 animate-tap" />
         </motion.div>
       </div>
+      
+      <motion.div 
+        className="flex justify-center mt-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
+        <Button 
+          className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-lg rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+          onClick={() => window.location.href = "mailto:contato@appsdeployer.com"}
+        >
+          Criar o meu
+        </Button>
+      </motion.div>
     </div>
   );
 };
